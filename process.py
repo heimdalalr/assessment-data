@@ -11,3 +11,14 @@ def sales_reports(log_file): #define function sales_reports from the argument lo
 
 sales_reports(log_file)
 #log_file.close() #it is best practice to close the file when you are done with it
+
+def qty_report(log_file, qty): #defines the function qty_report that takes in two params, log_file and qty
+    for line in log_file: #starts a loop through each line in log_file
+        line = line.rstrip() #removes white space from the right side of the line
+        data = line.rstrip(' ') #splits the line string into a list
+        if int(data[2]) > qty: #converts the data at index 2 into and int and checks if it exceeds the quantity requested
+            print(line) #prints the lines where the quantity is greater than the requested quantity
+
+log_file = open("um-server-01.txt") #reopens file to run report again
+qty_report(log_file, 10) #runs the function qty_reports
+
